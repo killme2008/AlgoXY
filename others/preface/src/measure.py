@@ -21,9 +21,9 @@ import random
 import minfree
 
 # return the second elapsed
-def measure(f, x):
+def measure(f, lst, x):
     start = time.time()
-    f(x)
+    assert(f(lst), x)
     end = time.time()
     return end - start
 
@@ -33,15 +33,15 @@ def test_min_free(f):
     for i in range(100):
         random.shuffle(lst)
         x = lst.pop()
-        tm = tm + measure(f, lst)
+        tm = tm + measure(f, lst, x)
         print tm, "[s] elapsed."
         lst.append(x)
     print "average time", tm/100, "[s]"
 
 def test():
     #test_min_free(minfree.brute_force)
-    #test_min_free(minfree.min_free) 
-    test_min_free(minfree.dc_min_free) 
+    test_min_free(minfree.min_free)
+    test_min_free(minfree.dc_min_free)
 
 # ============================
 # Some performance data
